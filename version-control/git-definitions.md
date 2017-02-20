@@ -17,3 +17,5 @@ A commit is the recorded change in a repository. So if a file or files were adde
 * What is a merge conflict?
 
 A merge conflict is when two different changes are made in two different branches and as a result, when you try to merge the two branches, git does not know which change to make.
+
+-Earl Sabal
