@@ -1,0 +1,24 @@
+#octopus {
+	position: fixed;
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	margin: auto;
+	padding: 75px 10px;
+}
+#glasses {
+	position: fixed;
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	margin: 10em auto;
+	padding: 10px 10px;
+}
+#hat {
+	position: fixed;
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	margin: auto;
+	padding: 10px 10px;
+}
