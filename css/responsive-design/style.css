@@ -1,6 +1,5 @@
 body {
   max-width: 960px;
-  min-width: 470px;
 }
 
 blockquote {
@@ -46,4 +45,26 @@ figure {
 figcaption {
   font-style: italic;
   text-align: right;
+}
+
+@media screen and (max-width: 500px) {
+  #external-links {
+    width: 100%
+  }
+
+  main {
+    width: 100%
+  }
+  h1 {
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 200px) {
+  h1 {
+    font-size: 12px;
+  }
+  body {
+    font-size: 10px;
+  }
 }
