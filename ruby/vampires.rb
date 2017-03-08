@@ -6,6 +6,7 @@ def employee_processing()
 		puts new_employee()
 		employees_processed += 1
 	end
+	puts "Actually, never mind! What do these questions have to do with anything? Let's all be friends."
 end
 
 def new_employee()
