@@ -1,0 +1,13 @@
+Elevator algorithm
+- Receive desired floor information
+- If the current floor is lower than the desired floor,
+	- Press the go up button
+- Else
+	- Press the go down button
+- Wait for elevator to arrive
+- Enter elevator
+- Starting from the button leading to the lowest floor, while the current button to press is less than the desired floor,
+		- advance to the next button leading to the floor higher up by 1 floor
+- Press the current button to press
+- Wait until the elevator reaches the desired floor.
+- Exit elevator
