@@ -11,3 +11,25 @@ Elevator algorithm
 - Press the current button to press
 - Wait until the elevator reaches the desired floor.
 - Exit elevator
+
+Showering Algorithm
+- Turn on water
+- Adjust water to desired heat
+- Enter shower
+- Start at the top of your body (your hair)
+- Until the current body part at the bottom (your feet) are washed
+	- If the current body part is your hair
+		- Shampoo hair
+		- Rinse hair
+	- Else if body part level conflicts (left arm right arm)
+		- Soap left side
+		- Soap right side
+	- Else
+		- Soap body part
+	- Mark current body part as washed/soaped
+	- Move down to the next body part
+- Rinse body
+- Turn off water
+- Exit shower
+- Dry body
+- Finished
