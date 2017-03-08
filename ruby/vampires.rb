@@ -3,7 +3,7 @@ def employee_processing()
 	number_of_processes = gets
 	employees_processed = 0
 	while employees_processed < number_of_processes
-		new_employee()
+		puts new_employee()
 		employees_processed += 1
 	end
 end
@@ -19,10 +19,17 @@ def new_employee()
 	employee_bread = gets.chomp()
 	puts "Would you like to enroll in the company’s health insurance?"
 	health_insurance = gets.chomp() 
-
+	puts "Do you have any allergies?"
+	allergy = ""
+	until (allergy == "done") || (allergy == "sunshine")
+		allergy = gets
+	end
+	
 	flags_for_vampire = 0
 	vampire_results = ""
-	if name_checker(employee_name) == true
+	if allergy == "sunshine"
+		vampire_results = "Probably a vampire"
+	elsif name_checker(employee_name) == true
 		vampire_results = "Definitely a vampire."
 	else
 		if age_checker == false
@@ -45,7 +52,7 @@ def new_employee()
 			vampire_results = "Almost certainly a vampire"
 		end
 	end
-	puts vampire_results			
+	return vampire_results			
 end
 
 def name_checker(name)
