@@ -25,14 +25,12 @@ end
 
 michaels_store = build_nested_structure
 puts "Expected: Spray adhesives"
-puts "Output: "
-puts "Expected: "
-puts "Output: "
-puts "Expected: "
-puts "Output: "
-puts "Expected: "
-puts "Output: "
-puts "Expected: "
-puts "Output: "
-puts "Expected: "
-puts "Output: "
+puts "Output: " + michaels_store[:adhesives].last
+puts "Expected: Candy making"
+puts "Output: " + michaels_store[:baking][1]
+puts "Expected: Palettes"
+puts "Output: " + michaels_store[:fine_arts][:painting].last
+puts "Expected: Canvases"
+puts "Output: " + michaels_store[:fine_arts][:surfaces][0]
+puts 'Expected: ["Felt", "Foam", "Wood", "Glitter"]'
+puts "Output: " + michaels_store[:kids][:general_crafts][0..3].to_s
