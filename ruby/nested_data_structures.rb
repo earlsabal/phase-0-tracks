@@ -23,3 +23,16 @@ def build_nested_structure
 	michaels_store
 end
 
+michaels_store = build_nested_structure
+puts "Expected: Spray adhesives"
+puts "Output: "
+puts "Expected: "
+puts "Output: "
+puts "Expected: "
+puts "Output: "
+puts "Expected: "
+puts "Output: "
+puts "Expected: "
+puts "Output: "
+puts "Expected: "
+puts "Output: "
