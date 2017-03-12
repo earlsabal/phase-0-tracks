@@ -10,3 +10,15 @@
 - If user says yes, allow to fix that specific mistake
 - Print the final information
 =end
+
+def generate_client_information
+	client_information = {
+		puts "Hello!"
+		puts "What is the client's name?"
+		puts "What is the client's age?"
+		puts "How many children does the client have?"
+		puts "Does the client have any pets?"
+		puts "What is the desired decor theme?"
+	}
+	return client_information
+end
