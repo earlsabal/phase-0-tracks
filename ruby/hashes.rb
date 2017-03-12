@@ -24,8 +24,16 @@ def generate_client_information
 	client_information[:has_pets] = gets.chomp
 	puts "What is the desired decor theme?"
 	client_information[:decor_theme] = gets.chomp
-
-	return client_information
+	list_of_information = generate_list_of_information(client_information)
 end
 
+def generate_list_of_information(information)
+	list = []
+	list << "Name: " + information[:name]
+	list << "Age: " + information[:age].to_s
+	list << "Number of Children: " + information[:number_of_children].to_s
+	list << "Pets: " + information[:has_pets].to_s
+	list << "Decor Theme: " + information[:decor_theme]
+	list
+end
 puts generate_client_information
