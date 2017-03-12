@@ -24,10 +24,10 @@ def generate_client_information
 	puts list_of_information
 	is_correct = ""
 	while is_correct.downcase != "no"
-		puts "Would you like to make any changes?"
+		puts "Would you like to make any changes? (yes/no)"
 		is_correct = gets.chomp
 		if is_correct.downcase == "yes"
-			puts "What would you like to change?"
+			puts "What would you like to change? (Enter desired subject to change)"
 			information_to_change = gets.chomp
 			if information_to_change.downcase == "name"
 				client_information[:name] = get_name
@@ -75,7 +75,7 @@ def get_number_of_children
 end
 
 def get_has_pets
-	puts "Does the client have any pets?"
+	puts "Does the client have any pets? (yes/no)"
 	has_pets = gets.chomp
 	return has_pets.downcase == "yes"
 end
