@@ -12,13 +12,20 @@
 =end
 
 def generate_client_information
-	client_information = {
-		puts "Hello!"
-		puts "What is the client's name?"
-		puts "What is the client's age?"
-		puts "How many children does the client have?"
-		puts "Does the client have any pets?"
-		puts "What is the desired decor theme?"
-	}
+	client_information = {}
+	puts "Hello!"
+	puts "What is the client's name?"
+	client_information[:name] = gets.chomp
+	puts "What is the client's age?"
+	client_information[:age] = gets.to_i
+	puts "How many children does the client have?"
+	client_information[:number_of_children] = gets.to_i
+	puts "Does the client have any pets?"
+	client_information[:has_pets] = gets.chomp
+	puts "What is the desired decor theme?"
+	client_information[:decor_theme] = gets.chomp
+
 	return client_information
 end
+
+puts generate_client_information
