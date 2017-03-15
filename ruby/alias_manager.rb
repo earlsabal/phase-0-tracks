@@ -11,6 +11,8 @@
 - print new name
 =end
 
+VOWELS = ["a", "e", "i", "o", "u"]
+
 def generate_spy_name(full_name)
 	names = full_name.split(" ")
 	counter = 0
@@ -22,7 +24,32 @@ def generate_spy_name(full_name)
 end
 
 def create_new_name(initial_name)
-	new_name = "hello"
+	letters_in_name = initial_name.downcase.split("")
+	counter = 0
+	letters_in_name.each do |letter|
+		letters_in_name[counter] = change_letter(letter)
+		counter += 1
+	end
+	new_name = letters_in_name.join("")
+	new_name.capitalize
+end
+
+def change_letter(letter)
+	unless VOWELS.include?(letter)
+		if VOWELS.include?(letter.next)
+			new_letter = letter.next.next
+		else
+			if letter == "z"
+				new_letter = "b"
+			else
+				new_letter = letter.next
+			end
+		end
+	else
+		current_vowels_index = VOWELS.index(letter)
+		new_letter = VOWELS[current_vowels_index + 1]
+	end
+	new_letter
 end
 
 puts generate_spy_name("Earl Sabal")
