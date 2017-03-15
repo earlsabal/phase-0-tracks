@@ -12,17 +12,23 @@
 =end
 
 VOWELS = ["a", "e", "i", "o", "u"]
+REAL_IDENTITY = 0
+FAKE_IDENTITY = 1
 
 def alias_manager
 	real_name = ""
+	list_of_aliases = []
 	while real_name != "quit"
 		puts 'What is your name agent? Enter "quit" if you are done'
 		real_name = gets.chomp
 		if real_name != "quit"
 			new_alias = generate_spy_name(real_name)
 			puts new_alias
+			list_of_aliases << [real_name, new_alias]
 		end
 	end
+	puts "Here are your agents"
+	print_all_agents_with_aliases(list_of_aliases)
 	puts "Thank you for using Alias 3000!"
 end
 
@@ -80,6 +86,12 @@ def finalize_name(names)
 	end
 	final_name = final_name.join(" ")
 	final_name
+end
+
+def print_all_agents_with_aliases(list)
+	list.each do |agent|
+		puts agent[REAL_IDENTITY] + " code named " + agent[FAKE_IDENTITY]
+	end
 end
 
 alias_manager
