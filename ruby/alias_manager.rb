@@ -13,6 +13,19 @@
 
 VOWELS = ["a", "e", "i", "o", "u"]
 
+def alias_manager
+	real_name = ""
+	while real_name != "quit"
+		puts 'What is your name agent? Enter "quit" if you are done'
+		real_name = gets.chomp
+		if real_name != "quit"
+			new_alias = generate_spy_name(real_name)
+			puts new_alias
+		end
+	end
+	puts "Thank you for using Alias 3000!"
+end
+
 def generate_spy_name(full_name)
 	names = full_name.split(" ")
 	counter = 0
@@ -21,6 +34,7 @@ def generate_spy_name(full_name)
 		counter += 1
 	end
 	spy_name = finalize_name(names)
+	puts "Here is your new spy name!"
 	spy_name
 end
 
@@ -68,5 +82,4 @@ def finalize_name(names)
 	final_name
 end
 
-puts generate_spy_name("Earl Sabal")
-puts generate_spy_name("Zack Jim Buld")
+alias_manager
