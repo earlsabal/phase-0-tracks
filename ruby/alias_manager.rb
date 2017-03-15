@@ -20,7 +20,8 @@ def generate_spy_name(full_name)
 		names[counter] = create_new_name(name)
 		counter += 1
 	end
-	names
+	spy_name = finalize_name(names)
+	spy_name
 end
 
 def create_new_name(initial_name)
@@ -46,10 +47,26 @@ def change_letter(letter)
 			end
 		end
 	else
-		current_vowels_index = VOWELS.index(letter)
-		new_letter = VOWELS[current_vowels_index + 1]
+		if letter == "u"
+			new_letter = "a"
+		else
+			current_vowels_index = VOWELS.index(letter)
+			new_letter = VOWELS[current_vowels_index + 1]
+		end
 	end
 	new_letter
 end
 
+def finalize_name(names)
+	final_name = []
+	current_index = names.length - 1
+	while current_index >= 0
+		final_name << names[current_index]
+		current_index -= 1
+	end
+	final_name = final_name.join(" ")
+	final_name
+end
+
 puts generate_spy_name("Earl Sabal")
+puts generate_spy_name("Zack Jim Buld")
