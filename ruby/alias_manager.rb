@@ -26,10 +26,10 @@ end
 
 def create_new_name(initial_name)
 	letters_in_name = initial_name.downcase.split("")
-	counter = 0
+	index = 0
 	letters_in_name.each do |letter|
-		letters_in_name[counter] = change_letter(letter)
-		counter += 1
+		letters_in_name[index] = change_letter(letter)
+		index += 1
 	end
 	new_name = letters_in_name.join("")
 	new_name.capitalize
