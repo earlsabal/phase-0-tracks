@@ -1,6 +1,6 @@
 class Santa
-	attr_reader :age, :ethnicity
-	attr_accessor :gender
+	attr_reader :ethnicity
+	attr_accessor :gender, :age
 
 	def initialize(gender, ethnicity)
 		@gender = gender
@@ -40,16 +40,8 @@ for number_of_santas in 0..50
 	santas << Santa.new(example_genders.sample, example_ethnicities.sample)
 end
 
-age = 1
+
 santas.each do |santa|
-	celebrations = 0
-	while celebrations < age
-		santa.celebrate_birthday
-		celebrations += 1
-	end
-	puts "This santa is #{santa.age} years old and #{santa.ethnicity}"
-	age +=1
+	santa.age = Random.rand(140)
+	puts "This santa is #{santa.age} years old, #{santa.ethnicity} and a #{santa.gender}"
 end
-p santas.last.gender
-santas.last.gender = example_genders[0]
-p santas.last.gender
