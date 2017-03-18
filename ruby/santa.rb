@@ -1,5 +1,5 @@
 class Santa
-	attr_reader :ethnicity
+	attr_reader :ethnicity, :reindeer_ranking
 	attr_accessor :gender, :age
 
 	def initialize(gender, ethnicity)
@@ -22,7 +22,7 @@ class Santa
 	end
 
 	def get_mad_at(reindeer_name)
-		reindeer_index = @reindeer_ranking[reindeer_name].index
+		reindeer_index = @reindeer_ranking.index(reindeer_name)
 		@reindeer_ranking.delete_at(reindeer_index)
 		@reindeer_ranking << reindeer_name
 	end
@@ -45,3 +45,7 @@ santas.each do |santa|
 	santa.age = Random.rand(140)
 	puts "This santa is #{santa.age} years old, #{santa.ethnicity} and a #{santa.gender}"
 end
+
+p santas.last.reindeer_ranking 
+santas.last.get_mad_at("Dasher")
+p santas.last.reindeer_ranking
