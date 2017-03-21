@@ -29,7 +29,12 @@ end
 	# Returns an updated hash with new item
 
 def add_item(list, item_name, qty)
-	list[item_name.to_sym] = qty
+	if  !list.include?(item_name)
+		list[item_name.to_sym] = qty
+		list
+	else
+		puts "That's already on the list"
+	end
 	list
 end
 
@@ -56,7 +61,12 @@ end
 	# Returns an updated hash with new quantity
 
 def update_quantity(list, item_name, qty)
-	list[item_name.to_sym] = qty
+	if list.include?(item_name)
+		list[item_name.to_sym] = qty
+		list
+	else
+		puts "That's not on the list, but we can add it later"
+	end
 	list
 end
 
