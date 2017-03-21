@@ -42,6 +42,11 @@ end
 # output:
 	# Returns an updated hash after removing one item
 
+def remove_item(list, item_name)
+	list.delete(item_name.to_sym)
+	list
+end
+
 # Method to update the quantity of an item
 # input: Create method that takes in 3 parameters a hash, string, and a integer
 # steps:
@@ -50,6 +55,11 @@ end
 # output:
 	# Returns an updated hash with new quantity
 
+def update_quantity(list, item_name, qty)
+	list[item_name.to_sym] = qty
+	list
+end
+
 # Method to print a list and make it look pretty
 # input: Will take in one parameter, a hash
 # steps:
@@ -57,6 +67,14 @@ end
 		# print the key and value
 # output: Prints all keys with their value
 
+def print_list(list)
+	list.each do |item, qty|
+		puts "#{item.to_s} - #{qty}"
+	end
+end
+
 list = create_list("apple oranges carrots")
 add_item(list, "bananas", 2)
-p list
+remove_item(list, "apple")
+update_quantity(list, "oranges", 5)
+print_list(list)
