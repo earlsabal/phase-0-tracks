@@ -10,7 +10,7 @@
 # output: [what data type goes here, array or hash?]
 
 def create_list(string_of_items)
-	grocery_items = string_of_items.split(" ")
+	grocery_items = string_of_items.split(", ")
 	grocery_list = {}
 	default_quantity = 1
 	grocery_items.each do |item|
@@ -73,8 +73,18 @@ def print_list(list)
 	end
 end
 
+=begin
 list = create_list("apple oranges carrots")
 add_item(list, "bananas", 2)
 remove_item(list, "apple")
 update_quantity(list, "oranges", 5)
+print_list(list)
+=end
+
+list = create_list("Lemonade, Tomatoes, Onions, Ice Cream")
+update_quantity(list, "Lemonade", 2)
+update_quantity(list, "Tomatoes", 3)
+update_quantity(list, "Ice Cream", 4)
+remove_item(list, "Lemonade")
+update_quantity(list, "Ice Cream", 1)
 print_list(list)
