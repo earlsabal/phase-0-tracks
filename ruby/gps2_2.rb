@@ -1,0 +1,43 @@
+# Method to create a list
+# input: string of items separated by spaces (example: "carrots apples cereal pizza")
+# steps: 
+  # Create method that takes a string as parameter
+  # Break string into array of items
+  # Create an empty hash
+  # Assign each item as a new key in the hash
+  # set default quantity to 1
+  # print the list to the console [can you use one of your other methods here?]
+# output: [what data type goes here, array or hash?]
+
+# Method to add an item to a list
+# input: list, item name, and optional quantity
+# steps:
+	# Create method that takes in 3 parameters
+	# Update list with new item name with key
+	# Set the key's value to optional quatnity
+# output:
+	# Returns an updated hash with new item
+
+# Method to remove an item from the list
+# input: 
+	# Create method that takes in two parameters a hash and a string
+# steps:
+	# Search list for item
+	# Delete item for list
+# output:
+	# Returns an updated hash after removing one item
+
+# Method to update the quantity of an item
+# input: Create method that takes in 3 parameters a hash, string, and a integer
+# steps:
+	# Search for the item in the list
+	# Update the searched item with a new quantity
+# output:
+	# Returns an updated hash with new quantity
+
+# Method to print a list and make it look pretty
+# input: Will take in one parameter, a hash
+# steps:
+	# Iterate through each element in the hash
+		# print the key and value
+# output: Prints all keys with their value
