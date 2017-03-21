@@ -9,6 +9,16 @@
   # print the list to the console [can you use one of your other methods here?]
 # output: [what data type goes here, array or hash?]
 
+def create_list(string_of_items)
+	grocery_items = string_of_items.split(" ")
+	grocery_list = {}
+	default_quantity = 1
+	grocery_items.each do |item|
+		grocery_list[item.to_sym] = default_quantity
+	end
+	grocery_list
+end
+
 # Method to add an item to a list
 # input: list, item name, and optional quantity
 # steps:
@@ -17,6 +27,11 @@
 	# Set the key's value to optional quatnity
 # output:
 	# Returns an updated hash with new item
+
+def add_item(list, item_name, qty)
+	list[item_name.to_sym] = qty
+	list
+end
 
 # Method to remove an item from the list
 # input: 
@@ -41,3 +56,7 @@
 	# Iterate through each element in the hash
 		# print the key and value
 # output: Prints all keys with their value
+
+list = create_list("apple oranges carrots")
+add_item(list, "bananas", 2)
+p list
