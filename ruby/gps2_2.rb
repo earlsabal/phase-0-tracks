@@ -98,3 +98,18 @@ update_quantity(list, "Ice Cream", 4)
 remove_item(list, "Lemonade")
 update_quantity(list, "Ice Cream", 1)
 print_list(list)
+
+=begin
+What did you learn about pseudocode from working on this challenge?
+	I learned and easier way to write inputs and outputs
+What are the tradeoffs of using arrays and hashes for this challenge?
+	You could use a hash since keys are unique, however arrays would not overwrite any previous items
+What does a method return?
+	A method returns the information evaluated, such as strings, integers, booleans, or data structures
+What kind of things can you pass into methods as arguments?
+	You can pass strings, integers, data structures, and booleans
+How can you pass information between methods?
+	You can pass information between methods by calling or assigning a variable to the result of a method
+What concepts were solidified in this challenge, and what concepts are still confusing?
+	Psuedocoding was strengthened in this challenge and validating that methods work like they should and test them against things they shouldn't be doing
+=end
