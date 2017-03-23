@@ -15,4 +15,8 @@ class TodoList
 		index_to_delete = @list.index(task)
 		@list.delete_at(index_to_delete)
 	end
+
+	def get_item(index)
+		@list[index]
+	end
 end
