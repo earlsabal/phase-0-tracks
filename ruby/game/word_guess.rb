@@ -41,3 +41,9 @@
 #Once number of guesses are up OR the word is guessed
 #IF the player wins: print "Congratulations! You won!"
 #ELSE: print "HA HA HA YOUUU LOOOOSSSEEE!"
+class Word_guess
+	attr_reader :word, :revealed_letters, :guesses
+	def initialize(word_to_guess)
+		@word = word_to_guess
+	end
+end
