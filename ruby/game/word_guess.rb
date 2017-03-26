@@ -48,13 +48,16 @@ class Word_guess
 		@guesses = 8
 	end
 
-	def generate_word(user_word)
+	def start_game(user_word)
 		if valid_word(user_word) == true
 			@word = user_word
+			generate_guesses
+			generate_revealed_letters
 		else
 			p "Not a valid word"
 			@word = ""
 		end
+
 	end
 
 	def valid_word(user_word)
