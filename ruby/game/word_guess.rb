@@ -142,12 +142,19 @@ class Word_guess
 
 end
 
-=begin
-Game = Word_guess.new
+game = Word_guess.new
 p "Hello! Welcome to Word Guess!"
 p "Please enter a word to guess"
-user_word = ""
-while valid_word(user_word) != true
+user_word = gets.chomp
+while game.start_game(user_word.downcase) == false
+	p "Please enter a different word to guess"
 	user_word = gets.chomp
 end
-=end
+while game.is_game_over == false
+	p game.show_revealed_letters
+	p "Guesses left: " + game.guesses.to_s
+	p "Please guess a letter"
+	letter = gets.chomp
+	game.guess(letter.downcase)
+end
+p game.end_game_message
