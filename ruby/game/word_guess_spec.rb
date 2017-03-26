@@ -34,9 +34,20 @@ describe Word_guess do
     expect(word_guess.guesses).to eq 10
   end
 
+  it "checks if the game rejects a guess" do
+    word_guess.generate_word("hello")
+    word_guess.generate_guesses
+    expect(word_guess.guess("aa")).to eq false
+    expect(word_guess.guess("")).to eq false
+    expect(word_guess.guess("1")).to eq false
+    expect(word_guess.guess("!")).to eq false
+  end
+
   it "checks if the game won't count previous guesses" do
+    word_guess.generate_word("hello")
+    word_guess.generate_guesses
     word_guess.guess("h")
-    guesses_after_first_guess = word_guess.guesses_left
+    guesses_after_first_guess = word_guess.guesses
     word_guess.guess("h")
     expect(word_guess.guesses == guesses_after_first_guess).to eq true
   end

@@ -44,6 +44,7 @@
 class Word_guess
 	attr_reader :word, :revealed_letters, :guesses
 	def initialize
+		@guessed_letters = []
 		@guesses = 8
 	end
 
@@ -56,20 +57,41 @@ class Word_guess
 		end
 	end
 
-	def generate_guesses
-		number_to_add = @word.length - 3
-		@guesses += number_to_add
-	end
-
 	def valid_word(user_word)
 		if user_word.length < 3
 			false
-		elsif user_word[/[a-zA-Z]+/]  != user_word
+		elsif user_word[/[a-zA-Z]+/] != user_word
 			false
 		else
 			true
 		end
 	end
+
+	def generate_guesses
+		number_to_add = @word.length - 3
+		@guesses += number_to_add
+	end
+
+	def guess(letter)
+		if (letter.length > 1) || (letter[/[a-zA-Z]+/] != letter)
+			p "Not a valid guess"
+			false
+		else
+			if !@guessed_letters.include?(letter)
+				@guessed_letters << letter
+				@guesses -=1
+				reveal_letter(letter)
+			else
+				p "You already guessed that letter"
+				false
+			end
+		end
+	end
+
+	def reveal_letter(letter)
+		true
+	end
+
 end
 
 =begin
