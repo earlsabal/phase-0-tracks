@@ -52,6 +52,12 @@ describe Word_guess do
     expect(word_guess.guesses == guesses_after_first_guess).to eq true
   end
 
+  it "checks if the game will generate hidden letters format" do
+    word_guess.generate_word("hello")
+    word_guess.generate_revealed_letters
+    expect(word_guess.show_revealed_letters).to eq "_ _ _ _ _"
+  end
+
   it "checks if the game will reveal guessed letters" do
     word_guess.guess("h")
     expect(word_guess.revealed_letters).to eq "h _ _ _ _"

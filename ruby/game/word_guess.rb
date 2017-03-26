@@ -67,6 +67,17 @@ class Word_guess
 		end
 	end
 
+	def generate_revealed_letters
+		@revealed_letters = ""
+		while @revealed_letters.length < @word.length
+			@revealed_letters += "_"
+		end
+	end
+
+	def show_revealed_letters
+		show_word = @revealed_letters.split("").join(" ")
+	end
+
 	def generate_guesses
 		number_to_add = @word.length - 3
 		@guesses += number_to_add
@@ -88,7 +99,15 @@ class Word_guess
 		end
 	end
 
-	def reveal_letter(letter)
+	def reveal_letter(guessed_letter)
+		indexes = []
+		index = 0
+		@word.split("").each do |letter|
+			if guessed_letter == letter
+				indexes << index
+			end
+			index += 1
+		end
 		true
 	end
 
