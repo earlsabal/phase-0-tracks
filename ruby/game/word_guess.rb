@@ -43,7 +43,41 @@
 #ELSE: print "HA HA HA YOUUU LOOOOSSSEEE!"
 class Word_guess
 	attr_reader :word, :revealed_letters, :guesses
-	def initialize(word_to_guess)
-		@word = word_to_guess
+	def initialize
+		@guesses = 8
+	end
+
+	def generate_word(user_word)
+		if valid_word(user_word) == true
+			@word = user_word
+		else
+			p "Not a valid word"
+			@word = ""
+		end
+	end
+
+	def generate_guesses
+		number_to_add = @word.length - 3
+		@guesses += number_to_add
+	end
+
+	def valid_word(user_word)
+		if user_word.length < 3
+			false
+		elsif user_word[/[a-zA-Z]+/]  != user_word
+			false
+		else
+			true
+		end
 	end
 end
+
+=begin
+Game = Word_guess.new
+p "Hello! Welcome to Word Guess!"
+p "Please enter a word to guess"
+user_word = ""
+while valid_word(user_word) != true
+	user_word = gets.chomp
+end
+=end
