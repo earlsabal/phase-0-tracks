@@ -46,6 +46,7 @@ describe Word_guess do
   it "checks if the game won't count previous guesses" do
     word_guess.generate_word("hello")
     word_guess.generate_guesses
+    word_guess.generate_revealed_letters
     word_guess.guess("h")
     guesses_after_first_guess = word_guess.guesses
     word_guess.guess("h")
@@ -54,20 +55,41 @@ describe Word_guess do
 
   it "checks if the game will generate hidden letters format" do
     word_guess.generate_word("hello")
+    word_guess.generate_guesses
     word_guess.generate_revealed_letters
     expect(word_guess.show_revealed_letters).to eq "_ _ _ _ _"
   end
 
   it "checks if the game will reveal guessed letters" do
+    word_guess.generate_word("hello")
+    word_guess.generate_guesses
+    word_guess.generate_revealed_letters
     word_guess.guess("h")
-    expect(word_guess.revealed_letters).to eq "h _ _ _ _"
+    expect(word_guess.show_revealed_letters).to eq "h _ _ _ _"
   end
 
   it "checks if the game will work if the player loses" do
-    expect(word_guess.end_game).to eq "Congratulations! You won!"
+    word_guess.generate_word("hello")
+    word_guess.generate_guesses
+    word_guess.generate_revealed_letters
+    letter = "a"
+    while word_guess.is_game_over == false
+      word_guess.guess(letter)
+      letter = letter.next
+    end
+    expect(word_guess.end_game_message).to eq "HA HA HA YOUUU LOOOOSSSEEE!"
   end
 
   it "checks if the game will work if the player wins" do
-    expect(word_guess.end_game).to eq "HA HA HA YOUUU LOOOOSSSEEE!"
+    letters = ["h", "e", "l", "o"]
+    index = 0
+    word_guess.generate_word("hello")
+    word_guess.generate_guesses
+    word_guess.generate_revealed_letters
+    while word_guess.is_game_over == false
+      word_guess.guess(letters[index]) 
+      index += 1     
+    end
+    expect(word_guess.end_game_message).to eq "Congratulations! You won!"
   end
 end

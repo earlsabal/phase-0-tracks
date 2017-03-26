@@ -119,6 +119,24 @@ class Word_guess
 		indexes
 	end
 
+	def is_game_over
+		if (guesses == 0) || (@revealed_letters == @word)
+			true
+		else
+			false
+		end
+	end
+
+	def end_game_message
+		winners_message = "Congratulations! You won!"
+		losers_message = "HA HA HA YOUUU LOOOOSSSEEE!"
+		if @revealed_letters == @word
+			winners_message
+		else
+			losers_message
+		end
+	end
+
 end
 
 =begin
