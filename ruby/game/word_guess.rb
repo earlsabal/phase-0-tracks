@@ -99,7 +99,15 @@ class Word_guess
 		end
 	end
 
-	def reveal_letter(guessed_letter)
+	def reveal_letter(letter)
+		indexes = find_indexes(letter)
+		indexes.each do |index|
+			@revealed_letters[index] = letter
+		end
+		show_revealed_letters
+	end
+
+	def find_indexes(guessed_letter)
 		indexes = []
 		index = 0
 		@word.split("").each do |letter|
@@ -108,7 +116,7 @@ class Word_guess
 			end
 			index += 1
 		end
-		true
+		indexes
 	end
 
 end
