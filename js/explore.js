@@ -17,3 +17,7 @@ function reverse(stringToReverse) {
 	}
 	return reversedString
 }
+
+console.log(reverse("hello"))
+var newString = reverse("bootcamp")
+console.log(newString == "pmactoob")
