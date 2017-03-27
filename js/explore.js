@@ -11,7 +11,7 @@ output: string
 **/
 
 function reverse(stringToReverse) {
-	var reversedString = ""
+	var reversedString = "";
 	for (var i = stringToReverse.length - 1; i >= 0; i--) {
 		reversedString = reversedString + stringToReverse[i];
 	}
