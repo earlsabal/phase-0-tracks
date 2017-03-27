@@ -13,11 +13,14 @@ output: string
 function reverse(stringToReverse) {
 	var reversedString = ""
 	for (var i = stringToReverse.length - 1; i >= 0; i--) {
-		reversedString = reversedString + stringToReverse[i]
+		reversedString = reversedString + stringToReverse[i];
 	}
-	return reversedString
+	return reversedString;
 }
 
-console.log(reverse("hello"))
-var newString = reverse("bootcamp")
-console.log(newString == "pmactoob")
+console.log(reverse("hello"));
+string = "bootcamp";
+var newString = reverse(string);
+if (newString != string) {
+	console.log(newString);
+}
