@@ -11,3 +11,17 @@ steps:
 output: string
 */
 
+function longestPhrase (phraseList) {
+	targetIndex = 0;
+	longestLength = 0;
+	for (var i = 0; i < phraseList.length; i++) {
+		current_length = phraseList[i].length;
+		if (current_length > longestLength) {
+			targetIndex = i;
+			longestLength = current_length;
+		}
+	}
+	return phraseList[targetIndex];
+}
+
+console.log(longestPhrase(["long phrase","longest phrase","longer phrase"]));
