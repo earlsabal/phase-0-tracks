@@ -57,3 +57,15 @@ obj3 = {name: "Joe", age: 27};
 
 console.log(keyValueChecker(obj1, obj2));
 console.log(keyValueChecker(obj1, obj3));
+
+/*
+Function that generates random test data
+input: integer
+steps:
+	- Function takes in an integer
+	- Creates an empty array
+	- Inserts strings into the array until the array size reaches the input integer
+		- Strings inserted will be randomized with lengths between 1 and 10
+	- RETURN array
+output: array
+*/
