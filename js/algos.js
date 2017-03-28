@@ -12,10 +12,10 @@ output: string
 */
 
 function longestPhrase (phraseList) {
-	targetIndex = 0;
-	longestLength = 0;
+	var targetIndex = 0;
+	var longestLength = 0;
 	for (var i = 0; i < phraseList.length; i++) {
-		current_length = phraseList[i].length;
+		var current_length = phraseList[i].length;
 		if (current_length > longestLength) {
 			targetIndex = i;
 			longestLength = current_length;
@@ -51,9 +51,9 @@ function keyValueChecker (object1, object2) {
 }
 
 
-obj1 = {name: "Earl", age: 25};
-obj2 = {name: "Jim", age: 25};
-obj3 = {name: "Joe", age: 27};
+var obj1 = {name: "Earl", age: 25};
+var obj2 = {name: "Jim", age: 25};
+var obj3 = {name: "Joe", age: 27};
 
 console.log(keyValueChecker(obj1, obj2));
 console.log(keyValueChecker(obj1, obj3));
@@ -69,3 +69,25 @@ steps:
 	- RETURN array
 output: array
 */
+
+function generateRandomData (limit) {
+	var randomData = [];
+	while (randomData.length < limit) {
+		randomData.push(generateRandomString(1, 10));
+	}
+	return randomData;
+}
+
+function generateRandomString (minLength, maxLength) {
+	var randomLength = Math.floor(Math.random() * (maxLength - minLength)) + minLength;
+	var randomString = "";
+	var possibleCharacters = "abcdefghijklmnopqrstuvwxyz";
+	for(var i = 0; i < randomLength; i++){
+		randomString += possibleCharacters.charAt(Math.floor(Math.random() * possibleCharacters.length));
+	}
+	return randomString;
+}
+
+console.log(generateRandomData(3));
+console.log(generateRandomData(5));
+console.log(generateRandomData(2));
