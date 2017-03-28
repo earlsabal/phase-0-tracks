@@ -25,3 +25,17 @@ function longestPhrase (phraseList) {
 }
 
 console.log(longestPhrase(["long phrase","longest phrase","longer phrase"]));
+
+/*
+Function to check if any key-value pairs match in two objects
+input: two objects
+steps:
+	- take in both objects
+	- iterate through one object
+		- FOR each element, iterate through the second object checking if the element exists
+		- IF element exists in second object and have the same value
+			- RETURN true
+	- IF no key-value matches are found, RETURN false
+output: boolean
+*/
+
