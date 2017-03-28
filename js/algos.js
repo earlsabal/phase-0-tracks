@@ -39,3 +39,21 @@ steps:
 output: boolean
 */
 
+function keyValueChecker (object1, object2) {
+	for (var property1 in object1) {
+		for (var property2 in object2) {
+			if (property1 == property2 && object1[property1] == object2[property2]) {
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
+
+obj1 = {name: "Earl", age: 25};
+obj2 = {name: "Jim", age: 25};
+obj3 = {name: "Joe", age: 27};
+
+console.log(keyValueChecker(obj1, obj2));
+console.log(keyValueChecker(obj1, obj3));
