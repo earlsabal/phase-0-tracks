@@ -51,5 +51,6 @@ def add_transaction(db, name, change, source, time, is_income)
 	if !is_income
 		change *= -1
 	end
-	db.execute("INSERT INTO transactions (day, change, category, user_id)", [time, change, source, user])
+	change = money_to_data(change)
+	db.execute("INSERT INTO transactions (day, change, category, user_id) VALUES (?,?,?,?)", [time.to_s, change, source, user])
 end

@@ -80,18 +80,18 @@ while desired_task != 9
 		p "How did you get this income?"
 		source = gets.chomp
 		time = Time.now
+		add_transaction(db, user_name, income, source, time, true)
 		p "Here is your new current balance:"
 		p add_income(db, user_name, income)
-		add_transaction(income, source, time, true)
 	elsif desired_task == 3
 		p "How much is the expense?"
 		expense = gets.to_f
 		p "Where did your expense go to?"
 		source = gets.chomp
 		time = Time.now
+		add_transaction(db, user_name, expense, source, time, false)
 		p "Here is your new current balance:"
 		p add_expense(db, user_name, expense)
-		add_transaction(expense, source, time, false)
 	elsif desired_task == 4
 		p "Here are your transactions:"
 	elsif desired_task == 9
