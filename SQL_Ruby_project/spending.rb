@@ -65,9 +65,15 @@ while desired_task != 9
 		p "Here is your current balance:"
 		p "$" + current_bal(db, user_name).to_s
 	elsif desired_task == 2
+		p "How much is the income?"
+		income = gets.to_f
 		p "Here is your new current balance:"
+		p add_income(db, user_name, income)
 	elsif desired_task == 3
+		p "How much is the expense?"
+		expense = gets.to_f
 		p "Here is your new current balance:"
+		p add_expense(db, user_name, expense)
 	elsif desired_task == 4
 		p "Here are your transactions:"
 	elsif desired_task == 9
