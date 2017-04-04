@@ -21,3 +21,12 @@
 
 5. Delete an item that meets some condition (you can choose a condition that makes sense).
 	input:	DELETE FROM employees WHERE written_up="true";
+
+Other queries
+	input: 	SELECT employees.name, * FROM employees JOIN stores ON employees.store_id = stores.id;
+	output:	Earl Sabal|1|Earl Sabal|earlsabal@gmail.com|3|Replenishment|false|1|1|123 State Ave, San Jose CA|B|4089994545|company.state@company.com|true
+			John Doe|2|John Doe|johndoe@yahoo.com|1|Manager|false|2|2|4550 Hammer, Stockton CA|C|2098335345|company.hammer@company.com|false
+
+	input: 	SELECT employees.name, employees.position, location FROM employees JOIN stores ON employees.store_id = stores.id;
+	output:	Earl Sabal|Replenishment|123 State Ave, San Jose CA
+			John Doe|Manager|4550 Hammer, Stockton CA
