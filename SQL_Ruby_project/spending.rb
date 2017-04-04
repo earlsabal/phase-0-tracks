@@ -29,12 +29,15 @@ if has_an_account == "no"
 	while valid_name == false
 		user_name = gets.chomp
 		if valid_name_checker(db, user_name)
-			puts "Valid username"
 			valid_name = true
 		else
 			p "Username is taken, please try another"
 		end
 	end
+	p "What is your current balance? $$$"
+	balance = gets.to_f
+	converted_balance = money_to_data(balance)
+	add_user(db, user_name, converted_balance)
 end
 
 
