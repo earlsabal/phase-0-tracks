@@ -4,17 +4,27 @@ require_relative 'spending_methods'
 
 db = SQLite3::Database.new("spending.db")
 
-create_spending_table = <<-SQL
-  CREATE TABLE IF NOT EXISTS spending(
+create_users_table = <<-SQL
+  CREATE TABLE IF NOT EXISTS users(
     id INTEGER PRIMARY KEY,
     username VARCHAR(255),
     current_balance INT
   )
 SQL
 
-db.execute(create_spending_table)
+create_transactions_table = <<-SQL
+	CREATE TABLE IF NOT EXISTS transactions(
+		id INTEGER PRIMARY KEY,
+		day VARCHAR(255),
+		change INT,
+		category VARCHAR(255),
+		user_id INT,
+		FOREIGN KEY (user_id) REFERENCES users(id)
+		)
+SQL
 
-# Program can create a new user with current balance
+db.execute(create_users_table)
+db.execute(create_transactions_table)
 
 p "Hello! Welcome to the spending app, where we keep track of your money!"
 
@@ -67,13 +77,21 @@ while desired_task != 9
 	elsif desired_task == 2
 		p "How much is the income?"
 		income = gets.to_f
+		p "How did you get this income?"
+		source = gets.chomp
+		time = Time.now
 		p "Here is your new current balance:"
 		p add_income(db, user_name, income)
+		add_transaction(income, source, time, true)
 	elsif desired_task == 3
 		p "How much is the expense?"
 		expense = gets.to_f
+		p "Where did your expense go to?"
+		source = gets.chomp
+		time = Time.now
 		p "Here is your new current balance:"
 		p add_expense(db, user_name, expense)
+		add_transaction(expense, source, time, false)
 	elsif desired_task == 4
 		p "Here are your transactions:"
 	elsif desired_task == 9
@@ -84,11 +102,5 @@ while desired_task != 9
 end
 p "Thank you for using the spending app!"
 		
-
-
-
-
-# Program can take an income and add it to the current balance
-# Program can take an expense and subtract it to the current balance
 # Program can record a transaction and store it
 # Program can print all transactions, or requested number of transactions
