@@ -18,5 +18,10 @@ def money_to_data(initial)
 end
 
 def data_to_money(initial)
-	final = initial.to_f / 100
+	final = initial[0][0].to_f / 100
+end
+
+def current_bal(db, name)
+	data = db.execute("SELECT current_balance FROM spending WHERE username=?", [name])
+	balance = data_to_money(data)
 end

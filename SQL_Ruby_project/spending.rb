@@ -17,11 +17,13 @@ db.execute(create_spending_table)
 # Program can create a new user with current balance
 
 p "Hello! Welcome to the spending app, where we keep track of your money!"
+
 has_an_account = ""
 while has_an_account != "yes" && has_an_account != "no"
 	p "Do you have an account with us? (Answer: yes or no)"
 	has_an_account = gets.chomp.downcase
 end
+
 if has_an_account == "no"
 	p "What would you like your username to be?"
 	valid_name = false
@@ -49,6 +51,7 @@ else
 		end
 	end
 end
+
 desired_task = 0
 while desired_task != 9
 	p "What would you like to do today? Enter number"
@@ -60,6 +63,7 @@ while desired_task != 9
 	desired_task = gets.to_i
 	if desired_task == 1
 		p "Here is your current balance:"
+		p "$" + current_bal(db, user_name).to_s
 	elsif desired_task == 2
 		p "Here is your new current balance:"
 	elsif desired_task == 3
@@ -77,7 +81,7 @@ p "Thank you for using the spending app!"
 
 
 
-# Program can check for an existing user using username and pin
+
 # Program can take an income and add it to the current balance
 # Program can take an expense and subtract it to the current balance
 # Program can record a transaction and store it
