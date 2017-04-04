@@ -54,3 +54,28 @@ def add_transaction(db, name, change, source, time, is_income)
 	change = money_to_data(change)
 	db.execute("INSERT INTO transactions (day, change, category, user_id) VALUES (?,?,?,?)", [time.to_s, change, source, user])
 end
+
+def date_time_conversion(data)
+	data = data.split(" ")
+	date = format_date(data[0].split("-"))
+	time = format_time(data[1].split(":"))
+	new_data = date + " " + time
+end
+
+def format_date(original_format)
+	date = [original_format[1], original_format[2], original_format[0]].join("/")
+end
+
+def format_time(original_format)
+	am_pm = "AM"
+	hour = original_format[0].to_i
+	if hour == 0
+		hour = 12
+	elsif hour > 11
+		if hour > 12
+			hour -= 12
+		end
+		am_pm = "PM"
+	end
+	time = [hour.to_s, original_format[1]].join(":") + am_pm
+end

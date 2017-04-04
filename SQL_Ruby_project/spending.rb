@@ -25,7 +25,7 @@ SQL
 
 db.execute(create_users_table)
 db.execute(create_transactions_table)
-
+=begin
 p "Hello! Welcome to the spending app, where we keep track of your money!"
 
 has_an_account = ""
@@ -101,6 +101,17 @@ while desired_task != 9
 	end
 end
 p "Thank you for using the spending app!"
-		
+=end
 # Program can record a transaction and store it
 # Program can print all transactions, or requested number of transactions
+
+time = '2009-06-24 12:39:54 +0900'
+p date_time_conversion(time)
+time = '2009-04-30 00:39:54 +0900'
+p date_time_conversion(time)
+time = '2009-07-02 13:39:54 +0900'
+p date_time_conversion(time)
+time = '2009-12-25 11:39:54 +0900'
+p date_time_conversion(time)
+time = '2009-12-25 01:39:54 +0900'
+p date_time_conversion(time)
