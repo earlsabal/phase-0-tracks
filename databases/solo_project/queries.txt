@@ -1,0 +1,32 @@
+1. Display the information in one table (either table is fine).
+	input: 	SELECT * FROM employees;
+	output:	1|Earl Sabal|earlsabal@gmail.com|3|Sales Floor|false|1
+			2|John Doe|johndoe@yahoo.com|1|Manager|false|2
+			3|Jane Doe|janedoe@gmail.com|7|Cashier|true|3
+
+2. Update an item that meets some condition (you can choose a condition that makes sense).
+	input: 	UPDATE employees SET position="Replenishment" WHERE name="Earl Sabal";
+
+3. Display the information in both tables using one query.
+	input: 	SELECT * FROM employees, stores WHERE employees.store_id = stores.id;
+	output:	1|Earl Sabal|earlsabal@gmail.com|3|Replenishment|false|1|1|123 State Ave, San Jose CA|B|4089994545|company.state@company.com|true
+			2|John Doe|johndoe@yahoo.com|1|Manager|false|2|2|4550 Hammer, Stockton CA|C|2098335345|company.hammer@company.com|false
+			3|Jane Doe|janedoe@gmail.com|7|Cashier|true|3|3|888 Foley, San Francisco CA|C|4157779893|company.foley@company.com|true
+
+4. Display a narrower selection of columns (fewer columns than all of them, in other words) from both tables using one query.
+	input:	SELECT employees.name, stores.location FROM employees JOIN stores ON employees.store_id = stores.id;
+	output:	Earl Sabal|123 State Ave, San Jose CA
+			John Doe|4550 Hammer, Stockton CA
+			Jane Doe|888 Foley, San Francisco CA
+
+5. Delete an item that meets some condition (you can choose a condition that makes sense).
+	input:	DELETE FROM employees WHERE written_up="true";
+
+Other queries
+	input: 	SELECT employees.name, * FROM employees JOIN stores ON employees.store_id = stores.id;
+	output:	Earl Sabal|1|Earl Sabal|earlsabal@gmail.com|3|Replenishment|false|1|1|123 State Ave, San Jose CA|B|4089994545|company.state@company.com|true
+			John Doe|2|John Doe|johndoe@yahoo.com|1|Manager|false|2|2|4550 Hammer, Stockton CA|C|2098335345|company.hammer@company.com|false
+
+	input: 	SELECT employees.name, employees.position, location FROM employees JOIN stores ON employees.store_id = stores.id;
+	output:	Earl Sabal|Replenishment|123 State Ave, San Jose CA
+			John Doe|Manager|4550 Hammer, Stockton CA
