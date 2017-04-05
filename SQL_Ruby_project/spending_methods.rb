@@ -65,7 +65,7 @@ def add_transaction(db, name, amount, is_income)
 	end
 	money_data = money_to_data(new_balance)
 	db.execute("UPDATE users SET current_balance=? WHERE username=?", [money_data, name])
-	new_balance
+	format_money(new_balance)
 end
 
 NEGATIVE = -1
@@ -144,12 +144,36 @@ end
 
 CENTS = 1
 ONE = 1
+TWO = 2
 def format_money(money)
-	money = money.split(".")
+	money = dollar_cent_split(money)
 	if money[CENTS].size == ONE
 		money[CENTS] += "0"
 	end
 	formatted_money = "$" + money.join(".")
+end
+
+def valid_money_entry(money)
+	money = dollar_cent_split(money)
+	if money[CENTS].size > TWO
+		false
+	else
+		true
+	end
+end
+
+def valid_balance(entry)
+	valid_characters = "1234567890."
+	entry.split("").each do |character|
+		if !valid_characters.include?(character)
+			return false
+		end
+	end
+	valid_money_entry(entry.to_f)
+end
+
+def dollar_cent_split(money)
+	split_money = money.to_s.split(".")
 end
 
 def spacing
