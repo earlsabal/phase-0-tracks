@@ -26,7 +26,7 @@ SQL
 db.execute(create_users_table)
 db.execute(create_transactions_table)
 
-=begin
+
 p "Hello! Welcome to the spending app, where we keep track of your money!"
 
 has_an_account = ""
@@ -74,7 +74,7 @@ while desired_task != 9
 	desired_task = gets.to_i
 	if desired_task == 1
 		p "Here is your current balance:"
-		p "$" + current_bal(db, user_name).to_s
+		p format_money(current_bal(db, user_name).to_s)
 	elsif desired_task == 2
 		p "How much is the income?"
 		income = gets.to_f
@@ -94,7 +94,10 @@ while desired_task != 9
 		p "Here is your new current balance:"
 		p add_expense(db, user_name, expense)
 	elsif desired_task == 4
+		p "How many transactions would you like to view? (Type 0 for all)"
+		number = gets.to_i
 		p "Here are your transactions:"
+		print_transactions(db, user_name, number)
 	elsif desired_task == 9
 		p "Exiting..."
 	else
@@ -102,20 +105,5 @@ while desired_task != 9
 	end
 end
 p "Thank you for using the spending app!"
-=end
+
 # Program can print all transactions, or requested number of transactions
-
-=begin
-time = '2009-06-24 12:39:54 +0900'
-p date_time_conversion(time)
-time = '2009-04-30 00:39:54 +0900'
-p date_time_conversion(time)
-time = '2009-07-02 13:39:54 +0900'
-p date_time_conversion(time)
-time = '2009-12-25 11:39:54 +0900'
-p date_time_conversion(time)
-time = '2009-12-25 01:39:54 +0900'
-p date_time_conversion(time)
-=end
-
-print_transactions(db, "earl", 0)

@@ -88,7 +88,12 @@ end
 def print_transactions(db, name, number_of_transactions)
 	user = find_user_id(db, name)
 	transactions = db.execute("SELECT * FROM transactions WHERE user_id=?",[user])
-	transactions.each do |transaction|
+	if number_of_transactions.to_i >= transactions.length
+		limit = transactions.length - 1
+	else
+		limit = number_of_transactions - 1
+	end
+	transactions.reverse[0..limit].each do |transaction|
 		date = transaction[1]
 		amount = data_to_money(transaction[2])
 		amount = format_money(amount.to_s)
@@ -102,5 +107,5 @@ def format_money(initial)
 	if initial[1].size == 1
 		initial[1] += "0"
 	end
-	final = initial.join(".")
+	final = "$" + initial.join(".")
 end
