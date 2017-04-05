@@ -35,7 +35,7 @@ else
 	while valid_name == false
 		user_name = gets.chomp
 		if !existing_name_checker(db, user_name)
-			"That username does not exist, please try again"
+			puts "That username does not exist, please try again"
 		else
 			valid_name = true
 		end
@@ -63,20 +63,20 @@ while desired_task != 9
 		puts "How did you get this income?"
 		source = gets.chomp
 		time = Time.now
-		add_transaction(db, user_name, income, source, time, true)
+		record_transaction(db, user_name, income, source, time, true)
 		puts "Here is your new current balance:"
-		puts add_income(db, user_name, income)
+		puts add_transaction(db, user_name, income, true)
 	elsif desired_task == 3
 		puts "How much is the expense?"
 		expense = gets.to_f
 		puts "Where did your expense go to?"
 		source = gets.chomp
 		time = Time.now
-		add_transaction(db, user_name, expense, source, time, false)
+		record_transaction(db, user_name, expense, source, time, false)
 		puts "Here is your new current balance:"
-		puts add_expense(db, user_name, expense)
+		puts add_transaction(db, user_name, expense, false)
 	elsif desired_task == 4
-		puts "How many transactions would you like to view? (Type 0 for all)"
+		puts "How many transactions would you like to view? (Type a number ex: 1, 2, 3 or type 0 for all)"
 		number = gets.to_i
 		puts "Here are your transactions:"
 		print_transactions(db, user_name, number)
