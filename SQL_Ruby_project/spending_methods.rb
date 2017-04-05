@@ -18,7 +18,11 @@ def money_to_data(initial)
 end
 
 def data_to_money(initial)
-	final = initial[0][0].to_f / 100
+	if initial.is_a? Integer
+		final = initial.to_f / 100
+	else
+		final = initial[0][0].to_f / 100
+	end
 end
 
 def current_bal(db, name)
@@ -52,7 +56,8 @@ def add_transaction(db, name, change, source, time, is_income)
 		change *= -1
 	end
 	change = money_to_data(change)
-	db.execute("INSERT INTO transactions (day, change, category, user_id) VALUES (?,?,?,?)", [time.to_s, change, source, user])
+	time = date_time_conversion(time.to_s)
+	db.execute("INSERT INTO transactions (day, change, category, user_id) VALUES (?,?,?,?)", [time, change, source, user])
 end
 
 def date_time_conversion(data)
@@ -78,4 +83,24 @@ def format_time(original_format)
 		am_pm = "PM"
 	end
 	time = [hour.to_s, original_format[1]].join(":") + am_pm
+end
+
+def print_transactions(db, name, number_of_transactions)
+	user = find_user_id(db, name)
+	transactions = db.execute("SELECT * FROM transactions WHERE user_id=?",[user])
+	transactions.each do |transaction|
+		date = transaction[1]
+		amount = data_to_money(transaction[2])
+		amount = format_money(amount.to_s)
+		category = transaction[3]
+		puts amount.to_s + " " + category + " on " + date
+	end
+end
+
+def format_money(initial)
+	initial = initial.split(".")
+	if initial[1].size == 1
+		initial[1] += "0"
+	end
+	final = initial.join(".")
 end
