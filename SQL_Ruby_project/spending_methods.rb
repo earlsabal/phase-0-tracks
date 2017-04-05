@@ -1,5 +1,29 @@
 INCLUDED = [[1]]
 
+def start_database
+	db = SQLite3::Database.new("spending.db")
+	create_users_table = <<-SQL
+	  CREATE TABLE IF NOT EXISTS users(
+	    id INTEGER PRIMARY KEY,
+	    username VARCHAR(255),
+	    current_balance INT
+	  )
+	SQL
+	create_transactions_table = <<-SQL
+		CREATE TABLE IF NOT EXISTS transactions(
+			id INTEGER PRIMARY KEY,
+			day VARCHAR(255),
+			change INT,
+			category VARCHAR(255),
+			user_id INT,
+			FOREIGN KEY (user_id) REFERENCES users(id)
+			)
+	SQL
+	db.execute(create_users_table)
+	db.execute(create_transactions_table)
+	db
+end
+
 def existing_name_checker(db, name)
 	if db.execute("SELECT 1 FROM users WHERE username=?", [name]) == INCLUDED
 		true
@@ -108,4 +132,10 @@ def format_money(initial)
 		initial[1] += "0"
 	end
 	final = "$" + initial.join(".")
+end
+
+def spacing
+	puts ""
+	puts "____________________________"
+	puts ""
 end

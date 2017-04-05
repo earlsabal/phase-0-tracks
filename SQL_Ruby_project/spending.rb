@@ -2,56 +2,35 @@
 require 'sqlite3'
 require_relative 'spending_methods'
 
-db = SQLite3::Database.new("spending.db")
+db = start_database
 
-create_users_table = <<-SQL
-  CREATE TABLE IF NOT EXISTS users(
-    id INTEGER PRIMARY KEY,
-    username VARCHAR(255),
-    current_balance INT
-  )
-SQL
-
-create_transactions_table = <<-SQL
-	CREATE TABLE IF NOT EXISTS transactions(
-		id INTEGER PRIMARY KEY,
-		day VARCHAR(255),
-		change INT,
-		category VARCHAR(255),
-		user_id INT,
-		FOREIGN KEY (user_id) REFERENCES users(id)
-		)
-SQL
-
-db.execute(create_users_table)
-db.execute(create_transactions_table)
-
-
-p "Hello! Welcome to the spending app, where we keep track of your money!"
+puts "Hello! Welcome to the spending app, where we keep track of your money!"
 
 has_an_account = ""
 while has_an_account != "yes" && has_an_account != "no"
-	p "Do you have an account with us? (Answer: yes or no)"
+	puts "Do you have an account with us? (Answer: yes or no)"
 	has_an_account = gets.chomp.downcase
 end
 
+spacing
+
 if has_an_account == "no"
-	p "What would you like your username to be?"
+	puts "What would you like your username to be?"
 	valid_name = false
 	while valid_name == false
 		user_name = gets.chomp
 		if !existing_name_checker(db, user_name)
 			valid_name = true
 		else
-			p "Username is taken, please try another"
+			puts "Username is taken, please try another"
 		end
 	end
-	p "What is your current balance? $$$"
+	puts "What is your current balance? $$$"
 	balance = gets.to_f
 	converted_balance = money_to_data(balance)
 	add_user(db, user_name, converted_balance)
 else
-	p "What is your username?"
+	puts "What is your username?"
 	valid_name = false
 	while valid_name == false
 		user_name = gets.chomp
@@ -63,47 +42,51 @@ else
 	end
 end
 
+spacing
+
+puts "Welcome #{user_name}!"
 desired_task = 0
 while desired_task != 9
-	p "What would you like to do today? Enter number"
-	p "1: See current balance"
-	p "2: Enter income"
-	p "3: Enter expense"
-	p "4: See transactions"
-	p "9: Exit program"
+	puts "What would you like to do today? Enter number"
+	puts "1: See current balance"
+	puts "2: Enter income"
+	puts "3: Enter expense"
+	puts "4: See transactions"
+	puts "9: Exit program"
 	desired_task = gets.to_i
 	if desired_task == 1
-		p "Here is your current balance:"
-		p format_money(current_bal(db, user_name).to_s)
+		puts "Here is your current balance:"
+		puts format_money(current_bal(db, user_name).to_s)
 	elsif desired_task == 2
-		p "How much is the income?"
+		puts "How much is the income?"
 		income = gets.to_f
-		p "How did you get this income?"
+		puts "How did you get this income?"
 		source = gets.chomp
 		time = Time.now
 		add_transaction(db, user_name, income, source, time, true)
-		p "Here is your new current balance:"
-		p add_income(db, user_name, income)
+		puts "Here is your new current balance:"
+		puts add_income(db, user_name, income)
 	elsif desired_task == 3
-		p "How much is the expense?"
+		puts "How much is the expense?"
 		expense = gets.to_f
-		p "Where did your expense go to?"
+		puts "Where did your expense go to?"
 		source = gets.chomp
 		time = Time.now
 		add_transaction(db, user_name, expense, source, time, false)
-		p "Here is your new current balance:"
-		p add_expense(db, user_name, expense)
+		puts "Here is your new current balance:"
+		puts add_expense(db, user_name, expense)
 	elsif desired_task == 4
-		p "How many transactions would you like to view? (Type 0 for all)"
+		puts "How many transactions would you like to view? (Type 0 for all)"
 		number = gets.to_i
-		p "Here are your transactions:"
+		puts "Here are your transactions:"
 		print_transactions(db, user_name, number)
 	elsif desired_task == 9
-		p "Exiting..."
+		puts "Exiting..."
 	else
-		p "Not a valid entry, please try again"
+		puts "Not a valid entry, please try again"
 	end
+	spacing
 end
-p "Thank you for using the spending app!"
+puts "Thank you for using the spending app!"
 
 # Program can print all transactions, or requested number of transactions
