@@ -1,4 +1,4 @@
-INCLUDED = [[1]]
+
 
 def start_database
 	db = SQLite3::Database.new("spending.db")
@@ -24,6 +24,7 @@ def start_database
 	db
 end
 
+INCLUDED = [[1]]
 def existing_name_checker(db, name)
 	if db.execute("SELECT 1 FROM users WHERE username=?", [name]) == INCLUDED
 		true
@@ -36,16 +37,17 @@ def add_user(db, name, balance)
 	db.execute("INSERT INTO users (username, current_balance) VALUES (?, ?)", [name, balance])
 end
 
+CONVERSION = 100
 def money_to_data(initial)
-	final = initial * 100
+	final = initial * CONVERSION
 	final.to_i
 end
 
 def data_to_money(initial)
 	if initial.is_a? Integer
-		final = initial.to_f / 100
+		final = initial.to_f / CONVERSION
 	else
-		final = initial[0][0].to_f / 100
+		final = initial[0][0].to_f / CONVERSION
 	end
 end
 
@@ -74,62 +76,81 @@ def find_user_id(db, name)
 	id = data[0][0]
 end
 
+NEGATIVE = -1
 def add_transaction(db, name, change, source, time, is_income)
 	user = find_user_id(db, name)
 	if !is_income
-		change *= -1
+		change *= NEGATIVE
 	end
 	change = money_to_data(change)
 	time = date_time_conversion(time.to_s)
 	db.execute("INSERT INTO transactions (day, change, category, user_id) VALUES (?,?,?,?)", [time, change, source, user])
 end
 
+DATE = 0
+TIME = 1
 def date_time_conversion(data)
 	data = data.split(" ")
-	date = format_date(data[0].split("-"))
-	time = format_time(data[1].split(":"))
+	date = format_date(data[DATE].split("-"))
+	time = format_time(data[TIME].split(":"))
 	new_data = date + " " + time
 end
 
+YEAR = 0
+MONTH = 1
+DAY = 2
 def format_date(original_format)
-	date = [original_format[1], original_format[2], original_format[0]].join("/")
+	date = [original_format[MONTH], original_format[DAY], original_format[YEAR]].join("/")
 end
 
+HOUR = 0
+MINUTE = 1
+# Military time pronounciation
+TWELVE_HOUR_CONVERSION = 12
+ZERO_HUNDRED = 0
+ELEVEN_HUNDRED = 11
+TWELVE_HUNDRED = 12
 def format_time(original_format)
 	am_pm = "AM"
-	hour = original_format[0].to_i
-	if hour == 0
-		hour = 12
-	elsif hour > 11
-		if hour > 12
-			hour -= 12
+	hour = original_format[HOUR].to_i
+	if hour == TWELVE_HOUR_HUNDRED
+		hour = TWELVE_HOUR_CONVERSION
+	elsif hour > ELEVEN_HUNDRED
+		if hour > TWELVE_HUNDRED
+			hour -= TIME_CONVERSION
 		end
 		am_pm = "PM"
 	end
-	time = [hour.to_s, original_format[1]].join(":") + am_pm
+	time = [hour.to_s, original_format[MINUTE]].join(":") + am_pm
 end
 
+START = 0
+DATE_INDEX = 1
+AMOUNT = 2
+CATEGORY = 3
 def print_transactions(db, name, number_of_transactions)
 	user = find_user_id(db, name)
 	transactions = db.execute("SELECT * FROM transactions WHERE user_id=?",[user])
 	if number_of_transactions.to_i >= transactions.length
-		limit = transactions.length - 1
+		limit = transactions.length
 	else
-		limit = number_of_transactions - 1
+		limit = number_of_transactions
 	end
-	transactions.reverse[0..limit].each do |transaction|
-		date = transaction[1]
-		amount = data_to_money(transaction[2])
+	transactions.reverse[START...limit].each do |transaction|
+		date = transaction[DATE_INDEX]
+		amount = data_to_money(transaction[AMOUNT])
 		amount = format_money(amount.to_s)
-		category = transaction[3]
+		category = transaction[CATEGORY]
 		puts amount.to_s + " " + category + " on " + date
 	end
 end
 
+CENTS
+ONE = 1
 def format_money(initial)
 	initial = initial.split(".")
-	if initial[1].size == 1
-		initial[1] += "0"
+	if initial[CENTS].size == ONE
+		initial[CENTS] += "0"
 	end
 	final = "$" + initial.join(".")
 end
