@@ -71,7 +71,7 @@ if user_name != "exit"
 		desired_task = gets.to_i
 		if desired_task == 1
 			puts "Here is your current balance:"
-			puts format_money(current_bal(db, user_name))
+			puts current_bal(db, user_name)
 		elsif desired_task == 2
 			puts "How much is the income? (Type amount or type back)"
 			income = 0.0
