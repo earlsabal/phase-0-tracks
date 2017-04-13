@@ -1,14 +1,18 @@
 <html>
 <head>
-  <title>All Campuses</title>
+  <title>All Campus Locations</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1>All Campuses</h1>
-  <p>Here is a list of all the campuses</p>
+  <h1>All Campus Locations</h1>
+  <p>Here is a list of all the campus locations</p>
+  <% list_of_campuses = [] %>
   <ul>
     <% @campuses.each do |campus| %>
-      <li><%= campus %></li>
+      <% if !list_of_campuses.include?(campus['campus']) %>
+        <li><%= campus['campus'] %></li>
+        <% list_of_campuses << campus['campus'] %>
+      <% end %>
     <% end %>
   </ul>
 </body>
